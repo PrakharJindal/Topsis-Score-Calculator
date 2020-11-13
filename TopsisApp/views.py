@@ -96,7 +96,7 @@ def calculateTopsis(request):
         print(filename)
         uploaded_file_url = fs.url(filename)
         print(uploaded_file_url)
-        output_file = CalculateTopsisScore(uploaded_file_url, weight, impact)
+        output_file = CalculateTopsisScore(filename, weight, impact)
         attach_file_name = output_file
 
         try:

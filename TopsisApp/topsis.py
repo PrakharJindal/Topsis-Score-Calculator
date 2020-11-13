@@ -39,8 +39,8 @@ def euclidean_distance(val):
 def CalculateTopsisScore(file, weight, impact):
     outputName = ".".join(file.split(".")[:-1])
 
-    df = pd.read_csv("{}".format(file))
-    df_original = pd.read_csv("{}".format(file))
+    df = pd.read_csv("../media/{}".format(file))
+    df_original = pd.read_csv("../media/{}".format(file))
 
     if len(df.columns[1:]) != len(weight):
         return {"error": True, "msg": "No. Of weights on not equal to data size !"}
@@ -76,5 +76,5 @@ def CalculateTopsisScore(file, weight, impact):
 
     df_original['Rank'] = df_original['Topsis Score'].rank(ascending=0)
 
-    df_original.to_csv("{}-Output.csv".format(outputName))
-    return("{}-Output.csv".format(outputName))
+    df_original.to_csv("../media/{}-Output.csv".format(outputName))
+    return("../media/{}-Output.csv".format(outputName))
