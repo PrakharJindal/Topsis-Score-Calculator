@@ -1,8 +1,5 @@
 # python topsis.py topsis_data.csv "1,1,1,2" "+,+,-,+" result.csv
 
-from os import environ, error
-import sys
-import os
 import numpy as np
 import pandas as pd
 
@@ -45,24 +42,18 @@ def euclidean_distance(val):
 def CalculateTopsisScore(file, weight, impact):
     print("--- ", file, weight, impact)
     outputName = ".".join(file.split(".")[:-1])
-    outputFormat = ".".join(file.split(".")[-1])
 
     df = pd.read_csv("media/{}".format(file))
     print(df.head())
 
     if len(df.columns[1:]) != len(weight):
-        print("No. Of weights on not equal to data size !")
-        # fread.close()
         return {"error": True, "msg": "No. Of weights on not equal to data size !"}
-        sys.exit()
+
     elif len(df.columns[1:]) != len(impact):
-        print("No. Of imapacts on not equal to data size !")
-        # fread.close()
-        sys.exit()
+        return {"error": True, "msg": "No. Of imapacts on not equal to data size !"}
+
     elif len(df.columns[1:]) < 3:
-        print("Input File must have More than 3 columns !")
-        # fread.close()
-        sys.exit()
+        return {"error": True, "msg": "Input File must have More than 3 columns !"}
 
     df.iloc[:, 1:].apply(func=rss, axis=0)
 
@@ -92,5 +83,3 @@ def CalculateTopsisScore(file, weight, impact):
     print(df.head())
     df.to_csv("media/{}-Output.csv".format(outputName))
     return("media/{}-Output.csv".format(outputName))
-
-    # fread.close()
