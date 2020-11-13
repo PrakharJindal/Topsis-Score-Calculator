@@ -8,13 +8,11 @@ rssRow = []
 
 
 def rss(val):
-    print(val.name)  # Column Header
     s = 0
     for x in val:
         s += np.square(x)
     s = np.sqrt(s)
     rssRow.append(s)
-    print(s)
 
 
 ideal_best = []
@@ -26,7 +24,6 @@ worst_dist = []
 
 
 def euclidean_distance(val):
-    print("\n\n")
 
     s_plus = 0
     s_minus = 0
@@ -40,11 +37,10 @@ def euclidean_distance(val):
 
 
 def CalculateTopsisScore(file, weight, impact):
-    print("--- ", file, weight, impact)
     outputName = ".".join(file.split(".")[:-1])
 
     df = pd.read_csv("media/{}".format(file))
-    print(df.head())
+    df_original = pd.read_csv("media/{}".format(file))
 
     if len(df.columns[1:]) != len(weight):
         return {"error": True, "msg": "No. Of weights on not equal to data size !"}
@@ -76,10 +72,9 @@ def CalculateTopsisScore(file, weight, impact):
     best_dist_df = pd.DataFrame(
         performance, columns=["Topsis Score"])
 
-    df = pd.concat([df, best_dist_df], axis=1)
+    df_original = pd.concat([df_original, best_dist_df], axis=1)
 
-    df['Rank'] = df['Topsis Score'].rank(ascending=0)
+    df_original['Rank'] = df_original['Topsis Score'].rank(ascending=0)
 
-    print(df.head())
-    df.to_csv("media/{}-Output.csv".format(outputName))
+    df_original.to_csv("media/{}-Output.csv".format(outputName))
     return("media/{}-Output.csv".format(outputName))
