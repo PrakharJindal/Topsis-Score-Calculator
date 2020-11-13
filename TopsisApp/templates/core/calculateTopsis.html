@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Calculate Topsis Score</title>
+    <link rel="stylesheet" type="text/css" href="media/view.css" media="all" />
+    <script type="text/javascript" src="media/view.js"></script>
+  </head>
+  <body id="main_body">
+    <img id="top" src="media/top.png" alt="" />
+    <div id="form_container">
+      <form class="appnitro" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="form_description">
+          <h2>Calculate Topsis Score</h2>
+        </div>
+        <ul>
+          <li id="li_1">
+            <label class="description" for="element_1">Upload a CSV File</label>
+            <p></p>
+            <div>
+              <input
+                accept=".csv"
+                class="element file"
+                type="file"
+                name="myfile"
+              />
+            </div>
+          </li>
+          <p></p>
+
+          <li id="li_2">
+            <label class="description" for="element_2">Weights</label>
+            <p></p>
+
+            <div>
+              <input
+                id="weight"
+                name="weight"
+                class="element text medium"
+                type="weight"
+                maxlength="255"
+                value=""
+                placeholder="Eg. 1,1,0.25,0.1"
+              />
+            </div>
+            <p></p>
+          </li>
+          <li id="li_2">
+            <label class="description" for="element_2">Impacts</label>
+            <p></p>
+
+            <div>
+              <input
+                id="impact"
+                name="impact"
+                class="element text medium"
+                type="impact"
+                maxlength="255"
+                value=""
+                placeholder="Eg. +,+,-,+"
+              />
+            </div>
+            <p></p>
+          </li>
+          <li id="li_2">
+            <label class="description" for="element_2">Email Id </label>
+            <p></p>
+
+            <div>
+              <input
+                id="email"
+                name="email"
+                class="element text medium"
+                type="email"
+                maxlength="255"
+                value=""
+                placeholder="Eg. abc@gmail.com"
+              />
+            </div>
+            <p></p>
+          </li>
+
+          <li class="buttons">
+            <button type="submit">Calculate and Mail</button>
+          </li>
+        </ul>
+        <li>
+          <p></p>
+          <p></p>
+          {% if error_file %}
+          <p>{{ error_file }}</p>
+          {% endif %}
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+          <p></p>
+          {% if uploaded_file_url %}
+          <p>
+            Download converted file :
+            <a href="{{ uploaded_file_url }}" download
+              >{{ uploaded_file_url }}</a
+            >
+          </p>
+          {% endif %}
+          <p></p>
+        </li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <li>
+          <p>Made By : Prakhar Jindal</p>
+        </li>
+      </form>
+    </div>
+    <img id="bottom" src="media/bottom.png" alt="" />
+  </body>
+</html>
