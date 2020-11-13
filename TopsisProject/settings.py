@@ -27,7 +27,7 @@ SECRET_KEY = '=n&+5(oj&)ke-a_r^dwtpebo@-qppktjw0cd&5p#c__n(8b4fv'
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.0.110', '192.168.43.253',
-                 '192.168.0.107', "192.168.137.1", "127.0.0.1", "TopsisCalculator.pythonanywhere.com"]
+                 '192.168.0.107', "192.168.137.1", "127.0.0.1", "topsiscalculator.pythonanywhere.com"]
 
 # Application definition
 
